@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/877.e80b8162.chunk.js","mappings":"gMAGA,EAHoB,WAClB,OAAO,gCACR,C","sources":["components/Cast/Cast.jsx"],"sourcesContent":["export const Cast = () => {\n  return <p>Hello</p>;\n};\nexport default Cast;\n"],"names":[],"sourceRoot":""}
