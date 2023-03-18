@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  margin-left: 10px;
+}
+.buton_back {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+.buton_back:hover {
+  color: white;
+  background-color: orangered;
+}
+.movie_poster {
+  width: 350px;
+  margin-top: 20px;
+}
+.film_title {
+  margin-left: 20px;
+  margin-top: 0;
+  font-size: 50px;
+}
+.overview_title {
+  margin-left: 20px;
+  font-size: 20px;
+}
+.overview_text {
+  margin-left: 10px;
+  border-bottom: 2px solid #9b9b9b;
+}
+.genre_title {
+  margin-left: 20px;
+}
+.genre {
+  margin-left: 20px;
+  display: flex;
+}
+.genre_item {
+  margin-right: 20px;
+}
+.button {
+  margin-left: 10px;
+  text-decoration: none;
+  position: relative;
+  font-weight: 600;
+  height: 40px;
+  padding: 12px 20px;
+  outline: none;
+  border: 1px solid black;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.button:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  top: 7px;
+  left: 7px;
+  height: 100%;
+  background-color: orangered;
+  z-index: -1;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+  border-radius: inherit;
+}
+
+.button:hover:after {
+  top: 0px;
+  left: 0px;
+}

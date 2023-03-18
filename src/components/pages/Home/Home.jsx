@@ -6,9 +6,15 @@ export const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetchTrends().then(resp => {
-      setMovies(resp.results);
-    });
+    const getTrends = async () => {
+      try {
+        const resp = await fetchTrends();
+        setMovies(resp.results);
+      } catch (error) {
+        console.log('Error fetching trends:', error);
+      }
+    };
+    getTrends();
   }, []);
 
   return (

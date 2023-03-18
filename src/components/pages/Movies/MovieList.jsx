@@ -3,7 +3,7 @@ import styled from './Home.module.css';
 import errorImg from '../../../images/errorImg.jpg';
 export const MovieList = ({ movies }) => {
   const location = useLocation();
-  // console.log(location, 'привет MovieList');
+
   return (
     <div className={styled.ImageGallery}>
       {movies.map(item => (

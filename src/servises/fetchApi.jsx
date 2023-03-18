@@ -23,3 +23,8 @@ export const fetchCredit = async id => {
   const resp = await fetch(url);
   return await resp.json();
 };
+export const fetchReviews = async id => {
+  const url = `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${ApiKey}&language=en-US&page=1`;
+  const resp = await fetch(url);
+  return await resp.json();
+};
