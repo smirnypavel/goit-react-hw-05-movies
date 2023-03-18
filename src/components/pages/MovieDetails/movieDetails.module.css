@@ -71,3 +71,45 @@
   top: 0px;
   left: 0px;
 }
+.link_list {
+  display: flex;
+  border-bottom: 2px solid #9b9b9b;
+}
+.li {
+  list-style: none;
+  margin-left: 10px;
+  padding-bottom: 20px;
+}
+
+.link {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 40px;
+  font-size: 1.1em;
+  cursor: pointer;
+  background-color: #1717177b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.4s;
+}
+
+.link:hover {
+  border-radius: 5px;
+  transform: translateY(-10px);
+  box-shadow: 0 7px 0 -2px #f85959, 0 15px 0 -4px #39a2db,
+    0 16px 10px -3px #39a2db;
+}
+
+.link:active {
+  transition: all 0.2s;
+  transform: translateY(-5px);
+  box-shadow: 0 2px 0 -2px #f85959, 0 8px 0 -4px #39a2db,
+    0 12px 10px -3px #39a2db;
+}
+.information {
+  margin-left: 10px;
+}

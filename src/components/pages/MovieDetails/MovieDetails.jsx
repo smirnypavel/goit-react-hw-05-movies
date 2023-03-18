@@ -54,13 +54,17 @@ export const MovieDetails = () => {
             </div>
           </div>
         </div>
-
-        <ul>
-          <li>
-            <Link to={`/movies/${movieId}/cast`}>Cast</Link>
+        <h4 className={styled.information}>Additional information</h4>
+        <ul className={styled.link_list}>
+          <li className={styled.li}>
+            <Link to={`/movies/${movieId}/cast`} className={styled.link}>
+              Cast
+            </Link>
           </li>
-          <li>
-            <Link to={`/movies/${movieId}/reviews`}>Reviews</Link>
+          <li className={styled.li}>
+            <Link to={`/movies/${movieId}/reviews`} className={styled.link}>
+              Reviews
+            </Link>
           </li>
         </ul>
         <Outlet />
