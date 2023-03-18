@@ -1,7 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled from './Home.module.css';
 import errorImg from '../../../images/errorImg.jpg';
-export const MovieList = ({ movies }) => {
+
+const MovieList = ({ movies }) => {
   const location = useLocation();
 
   return (
@@ -27,4 +29,15 @@ export const MovieList = ({ movies }) => {
     </div>
   );
 };
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
 export default MovieList;

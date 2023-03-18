@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from 'servises/fetchApi';
 import styled from './reviews.module.css';
 
-export const Cast = () => {
+const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
@@ -21,18 +22,25 @@ export const Cast = () => {
 
   return (
     <div>
-      <ul>
-        {Array.isArray(reviews) &&
-          reviews.map(item => (
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map(item => (
             <li key={item.id} className={styled.li}>
               <h3>
                 {item.author} <p className={styled.content}>{item.content}</p>
               </h3>
             </li>
           ))}
-      </ul>
+        </ul>
+      ) : (
+        <p>Sorry no reviews</p>
+      )}
     </div>
   );
 };
 
-export default Cast;
+Reviews.propTypes = {
+  movieId: PropTypes.string,
+};
+
+export default Reviews;

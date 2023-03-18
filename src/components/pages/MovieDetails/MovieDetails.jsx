@@ -1,13 +1,13 @@
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { fetchDetails } from 'servises/fetchApi';
 import styled from './movieDetails.module.css';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState('');
-  //   const date = movie.release_date.substring(0);
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -71,6 +71,10 @@ export const MovieDetails = () => {
       </div>
     </div>
   );
+};
+
+MovieDetails.propTypes = {
+  location: PropTypes.object,
 };
 
 export default MovieDetails;

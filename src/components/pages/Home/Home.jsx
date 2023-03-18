@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchTrends } from 'servises/fetchApi';
 import MovieList from '../Movies';
 
@@ -9,6 +9,7 @@ export const Home = () => {
     const getTrends = async () => {
       try {
         const resp = await fetchTrends();
+
         setMovies(resp.results);
       } catch (error) {
         console.log('Error fetching trends:', error);

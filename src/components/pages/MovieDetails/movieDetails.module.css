@@ -14,7 +14,7 @@
   background-color: orangered;
 }
 .movie_poster {
-  width: 350px;
+  max-width: 350px;
   margin-top: 20px;
 }
 .film_title {
