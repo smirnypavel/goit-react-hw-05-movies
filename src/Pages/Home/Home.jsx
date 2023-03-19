@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchTrends } from 'servises/fetchApi';
-import MovieList from '../Movies';
+import MovieList from '../../components/Movies';
 import Loader from 'components/Loader/Loader';
 
 export const Home = () => {

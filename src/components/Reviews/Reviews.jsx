@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from 'servises/fetchApi';
 import styled from './reviews.module.css';
@@ -46,10 +45,6 @@ const Reviews = () => {
       )}
     </div>
   );
-};
-
-Reviews.propTypes = {
-  movieId: PropTypes.string,
 };
 
 export default Reviews;
