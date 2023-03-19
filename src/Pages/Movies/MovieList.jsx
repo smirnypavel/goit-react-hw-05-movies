@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from './Home.module.css';
-import errorImg from '../../../images/errorImg.jpg';
+import errorImg from '../../images/errorImg.jpg';
 
 const MovieList = ({ movies }) => {
   const location = useLocation();

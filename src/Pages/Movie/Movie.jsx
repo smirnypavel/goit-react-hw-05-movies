@@ -4,11 +4,13 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchSearch } from 'servises/fetchApi';
 import Movies from '../Movies';
 import SearchForm from 'components/SearchForm';
+import Loader from 'components/Loader/Loader';
 
 export const Movie = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const name = searchParams.get('name') ?? '';
 
   useEffect(() => {
@@ -16,27 +18,31 @@ export const Movie = () => {
       if (name === '') {
         return;
       }
+      setIsLoading(true);
       try {
         const resp = await fetchSearch(name);
         setMovies(resp.results);
       } catch (error) {
+        setError(error);
         toast.error('Введите запрос!');
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchData();
-  }, [query, name]);
+  }, [name]);
 
-  const handleFormSubmit = async query => {
-    setQuery(query);
-    setMovies([]);
+  const handleFormSubmit = query => {
     const nextParams = query !== '' ? { name: query } : {};
     setSearchParams(nextParams);
   };
 
   return (
     <main>
-      <SearchForm onSubmit={handleFormSubmit} query={query} />
-      <Movies movies={movies} />
+      {isLoading && <Loader />}
+      <SearchForm onSubmit={handleFormSubmit} />
+      {movies && <Movies movies={movies} />}
+      {error && <p>Went wrong</p>}
     </main>
   );
 };

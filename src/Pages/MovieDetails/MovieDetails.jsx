@@ -1,21 +1,29 @@
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { fetchDetails } from 'servises/fetchApi';
-import styled from './movieDetails.module.css';
+import styled from '../MovieDetails/movieDetails.module.css';
+import errorImg from '../../images/errorImg.jpg';
+import Loader from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const goBack = location.state?.from || '/';
 
   useEffect(() => {
     const getMovieDetails = async () => {
+      setIsLoading(true);
       try {
         const response = await fetchDetails(movieId);
         setMovie(response);
       } catch (error) {
+        setError(error);
         console.log('Error fetching movie details:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getMovieDetails();
@@ -23,16 +31,19 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link
-        className={styled.button}
-        to={location.state && location.state.from ? location.state.from : '/'}
-      >
+      {isLoading && <Loader />}
+      {error && <p>Went wrong</p>}
+      <Link className={styled.button} to={goBack}>
         Back to movies
       </Link>
       <div>
         <div className={styled.container}>
           <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : errorImg
+            }
             alt=""
             className={styled.movie_poster}
           />
@@ -57,12 +68,12 @@ const MovieDetails = () => {
         <h4 className={styled.information}>Additional information</h4>
         <ul className={styled.link_list}>
           <li className={styled.li}>
-            <Link to={`/movies/${movieId}/cast`} className={styled.link}>
+            <Link to="cast" state={{ from: goBack }} className={styled.link}>
               Cast
             </Link>
           </li>
           <li className={styled.li}>
-            <Link to={`/movies/${movieId}/reviews`} className={styled.link}>
+            <Link to="reviews" state={{ from: goBack }} className={styled.link}>
               Reviews
             </Link>
           </li>
@@ -71,10 +82,6 @@ const MovieDetails = () => {
       </div>
     </div>
   );
-};
-
-MovieDetails.propTypes = {
-  location: PropTypes.object,
 };
 
 export default MovieDetails;

@@ -2,11 +2,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import SharedLayout from './pages/SharedLayout';
-const Home = lazy(() => import('./pages/Home'));
-const Movie = lazy(() => import('./pages/Movie'));
-const NotFound = lazy(() => import('./pages/notFaund'));
-const MovieDetails = lazy(() => import('./pages/MovieDetails'));
+import SharedLayout from './SharedLayout/';
+const Home = lazy(() => import('../Pages/Home'));
+const Movie = lazy(() => import('../Pages/Movie'));
+const NotFound = lazy(() => import('../Pages/notFaund'));
+const MovieDetails = lazy(() => import('../Pages/MovieDetails'));
 const Cast = lazy(() => import('./Cast'));
 const Reviews = lazy(() => import('./Reviews'));
 export const App = () => {

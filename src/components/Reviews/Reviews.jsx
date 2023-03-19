@@ -3,18 +3,25 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from 'servises/fetchApi';
 import styled from './reviews.module.css';
+import Loader from 'components/Loader/Loader';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchMovieReviews = async () => {
+      setIsLoading(true);
       try {
         const resp = await fetchReviews(movieId);
         setReviews(resp.results);
       } catch (error) {
+        setError(error);
         console.log('Error fetching movie details:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchMovieReviews();
@@ -22,6 +29,8 @@ const Reviews = () => {
 
   return (
     <div>
+      {isLoading && <Loader />}
+      {error && <p>Went wrong</p>}
       {reviews.length > 0 ? (
         <ul>
           {reviews.map(item => (
